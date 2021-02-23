@@ -1,21 +1,19 @@
 #!/bin/bash
-
-echo "Input numbers, to exit input -1"
-a=0
-av=0
-i=0
-count=0
-var=0
-b=-1
-while [ $var -ne $b ]
-do
-read var
-av=$av+$var
-count+=$1
-done
-av=$av/$count
-echo "$count"
-
-
-
-
+chmod +x numbers.txt
+sed -i -e 's/\r$//' numbers.txt
+if [ -x numbers.txt ] 
+then
+    i=0
+    while read line; do
+        num[$i]="$line"
+        i=$(($i+1))
+    done < numbers.txt
+    echo "Number of arguments: $i"
+    s=0
+    for n in ${num[@]}
+    do
+        let s=s+n
+    done
+    let result=s/i
+    echo "Average = $result"
+fi
